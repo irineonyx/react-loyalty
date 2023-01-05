@@ -1,0 +1,76 @@
+[
+    {
+        "category": "Food & Beverage",
+        "items": [
+            {
+                "id": 1,
+                "amount": 5,
+                "name": "Cozy Coffee",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/food.jpeg"
+            },
+            {
+                "id": 1,
+                "amount": 10,
+                "name": "Cozy Coffee",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/food.jpeg"
+            },
+            {
+                "id": 1,
+                "amount": 15,
+                "name": "Cozy Coffee",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/food.jpeg"
+            },
+            {
+                "id": 1,
+                "amount": 12,
+                "name": "Cozy Coffee",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/food.jpeg"
+            }
+        ]
+    },
+    {
+        "category": "Shop & Play",
+        "items": [
+            {
+                "id": 1,
+                "amount": 5,
+                "name": "GameStop",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/ps.png"
+            },
+            {
+                "id": 1,
+                "amount": 10,
+                "name": "Books & Beyond",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/ps.png"
+            },
+            {
+                "id": 1,
+                "amount": 15,
+                "name": "Audio Technica",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/ps.png"
+            },
+            {
+                "id": 1,
+                "amount": 12,
+                "name": "Daiso",
+                "location": "Changi City Point",
+                "points": 125,
+                "image": "/images/ps.png"
+            }
+        ]
+    }
+]
