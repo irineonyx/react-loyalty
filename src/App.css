@@ -6,9 +6,22 @@
   padding-right: 20px;
   margin-bottom: 100px;
 }
-.categoryName{
+.voucherGroup{
   margin-top: 20px;
+}
+.categoryWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.categoryName{
   text-align: left;
+}
+.categoryViewAll{
+  color: cornflowerblue;
+}
+.points{
+  color: lightcoral;
 }
 footer{
   position: fixed;

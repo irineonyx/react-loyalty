@@ -10,7 +10,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Stack from 'react-bootstrap/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome,faGift,faHamburger,faTags,faWallet } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import Slider from "react-slick";
 import voucherData from './voucherdata.json';
 
@@ -28,8 +28,6 @@ function App() {
     slidesToShow: 2,
     slidesToScroll: 1
   };
-
-  console.log(voucherData)
 
   return (
     <>
@@ -86,106 +84,42 @@ function App() {
           </Card.Body>
         </Card>
 
-        <div>
-        <h2 className="categoryName">Food & Beverage</h2>
-        <Slider {...sliderSettings}>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/food.jpeg' />
-              <Card.Body>
-                <Card.Title>$5 - 100pts</Card.Title>
-                <Card.Text>
-                  Cozy Coffee
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/food.jpeg' />
-              <Card.Body>
-                <Card.Title>$15 - 100pts</Card.Title>
-                <Card.Text>
-                  Cozy Coffee
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/food.jpeg' />
-              <Card.Body>
-                <Card.Title>$10 - 100pts</Card.Title>
-                <Card.Text>
-                  Cozy Coffee
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/food.jpeg' />
-              <Card.Body>
-                <Card.Title>$12 - 100pts</Card.Title>
-                <Card.Text>
-                  Cozy Coffee
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        </Slider>
-      </div>
-
-      <div>
-        <h2 className="categoryName">Shop & Play</h2>
-        <Slider {...sliderSettings}>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/ps.png' />
-              <Card.Body>
-                <Card.Title>$5 - 100pts</Card.Title>
-                <Card.Text>
-                  GameStop
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/ps.png' />
-              <Card.Body>
-                <Card.Title>$15 - 100pts</Card.Title>
-                <Card.Text>
-                  GameStop
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/ps.png' />
-              <Card.Body>
-                <Card.Title>$10 - 100pts</Card.Title>
-                <Card.Text>
-                  GameStop
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-          <div>
-            <Card className="categoryCard">
-              <Card.Img variant="top" src='/images/ps.png' />
-              <Card.Body>
-                <Card.Title>$12 - 100pts</Card.Title>
-                <Card.Text>
-                  GameStop
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
-        </Slider>
-      </div>
-      </div>
+        {
+        voucherData.map((item,index) =>
+          (
+            <div className="voucherGroup" key="{index}">
+              <div className="categoryWrapper">
+                <h2 className="categoryName">{item['category']}</h2>
+                <div className='categoryViewAll'>View all <FontAwesomeIcon icon={faAngleRight} /></div>
+              </div>
+              
+              <Slider {...sliderSettings}>
+              {
+              item['items'].map((placeDetail,index2) =>
+                (
+                <div key="{index2}">
+                  <Card className="categoryCard">
+                    <Card.Img variant="top" src={placeDetail["image"]} />
+                    <Card.Body>
+                      <Card.Title>${placeDetail['amount']} eVoucher</Card.Title>
+                      <Card.Text>
+                        <div>{placeDetail['name']}</div>
+                        <div>{placeDetail['location']}</div>
+                        <div className="points">{placeDetail['points']} pts</div>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+                )
+              )
+              }
+              </Slider>\
+            </div>
+          )
+          )}
+        
+        
+      </div> {/* end appBody */}
       
       
       <AppNavbar/>
