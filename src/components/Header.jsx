@@ -14,6 +14,9 @@ const Header = () => {
         if(location.pathname == '/'){
             setNavbarTitle('Home')
         }
+        else if(location.pathname == '/rewards'){
+            setNavbarTitle('Rewards')
+        }
         else if(location.pathname == '/detail'){
             setNavbarTitle('Redeem')
         }

@@ -13,6 +13,9 @@ const AppNavbar = () => {
         if(location.pathname == '/'){
             setNavbarTitle('Home')
         }
+        else if(location.pathname == '/rewards'){
+            setNavbarTitle('Rewards')
+        }
         else if(location.pathname == '/detail'){
             setNavbarTitle('Rewards')
         }
@@ -25,10 +28,12 @@ const AppNavbar = () => {
                     <div><FontAwesomeIcon icon={faWallet} /></div>
                     <div>e-wallet</div>
                 </div>
+                <Link to={'/rewards'}>
                 <div className={"footerElem " + (navbarTitle == 'Rewards'? 'active' : '')}>
                     <div><FontAwesomeIcon icon={faGift} /></div>
                     <div>Rewards</div>
                 </div>
+                </Link>
                 <Link to={'/'}>
                 <div className={"footerElem " + (navbarTitle == 'Home'? 'active' : '')}>
                     <div><FontAwesomeIcon icon={faHome} /></div>

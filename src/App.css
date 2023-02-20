@@ -67,6 +67,24 @@ footer{
   color: #000000;
 }
 
+.list-dropdown-row{
+  gap: 12px;
+}
+.offcanvas.offcanvas-bottom{
+  height: auto !important;
+}
+.oc-filter .offcanvas-header{
+  justify-content: center;
+  border-bottom: 1px solid #e4e4e4;
+}
+.oc-filter .offcanvas-body{
+  text-align: center;
+}
+.oc-filter-item{
+  height: 40px;
+  cursor: pointer;
+}
+
 .img-detail{
   width: 100%;
 }
