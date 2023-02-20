@@ -51,14 +51,16 @@ const Home = () => {
                 item['items'].map((placeDetail,index2) =>
                     (
                     <div key="{index2}">
-                    <Link to={'/detail'} state={{ id: placeDetail["id"] }}>
+                    <Link to={'/detail'} state={{ id: placeDetail["id"], category: item['category'] }}>
                         <Card className="categoryCard">
                         <Card.Img variant="top" src={placeDetail["image"]} />
                         <Card.Body>
                             <Card.Title>${placeDetail['amount']} eVoucher</Card.Title>
                             <Card.Text>
-                            <div>{placeDetail['name']}</div>
-                            <div>{placeDetail['location']}</div>
+                            <div className='place-name-group'>
+                                <div className='bold'>{placeDetail['name']}</div>
+                                <div>{placeDetail['location']}</div>
+                            </div>
                             <div className="points">{placeDetail['points']} pts</div>
                             </Card.Text>
                         </Card.Body>

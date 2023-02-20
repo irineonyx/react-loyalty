@@ -1,5 +1,11 @@
+a{
+  color: unset !important;
+  text-decoration: none !important;
+}
+.bold{
+  font-weight: bold;
+}
 .App {
-  text-align: center;
   margin-top: 72px;
 }
 .appBody{
@@ -11,6 +17,13 @@ header{
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
+}
+.categoryCard .card-body{
+  text-align: center;
+}
+.slick-slide {
+  padding: 0 5px;
 }
 .voucherGroup{
   margin-top: 20px;
@@ -26,6 +39,9 @@ header{
 .categoryViewAll{
   color: cornflowerblue;
 }
+.place-name-group{
+  min-height: 150px;
+}
 .points{
   color: lightcoral;
 }
@@ -36,6 +52,8 @@ footer{
   width: 100%;
   border-top: 1px solid lightgrey;
   background: white;
+  text-align: center;
+  z-index: 100;
 }
 .footerNav{
   justify-content: space-evenly;
@@ -43,4 +61,12 @@ footer{
 }
 .footerElem{
   cursor: pointer;
+  color: #8c8c8c;
+}
+.footerElem.active{
+  color: #000000;
+}
+
+.img-detail{
+  width: 100%;
 }
