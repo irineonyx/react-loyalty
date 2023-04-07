@@ -3,22 +3,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Rewards from "./pages/Rewards";
 import Detail from "./pages/Details";
+import MyRewards from "./pages/MyRewards";
+import RedeemCode from "./pages/redeem/RedeemCode";
+import RedeemComplete from "./pages/RedeemComplete";
 import './App.css';
-import Header from './components/Header'
-import AppNavbar from './components/Navbar'
-
 
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
-        <AppNavbar/>
         <Routes>
             <Route exact path="/">
-              <Route index element={<Home />} />
+              <Route index element={<Rewards />} />
               <Route path="/rewards" element={<Rewards />} />
               <Route path="/detail" element={<Detail />} />
+              <Route path="/myrewards" element={<MyRewards />} />
+              <Route path="/myrewards/redeem/code" element={<RedeemCode />} />
+              <Route path="/myrewards/complete" element={<RedeemComplete />} />
             </Route>
         </Routes>
       </BrowserRouter>

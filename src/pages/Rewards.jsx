@@ -8,8 +8,9 @@ import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import voucherData from '../voucherdata.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import imgBack from '../images/arrow.png';
+import imgRewardsBanner from '../images/mastheads.png';
+import imgMyRewardsIcon from '../images/icon-rewards.png';
 
 const Rewards = () => {
     const [showFilterCategory, setShowFilterCategory] = useState(false);
@@ -64,17 +65,21 @@ const Rewards = () => {
 
     return (
         <>
-        <div className="appBody">
-            <Card className="cardPoint">
-            <Card.Body>
-                <Card.Title>
-                <Stack direction="horizontal">
-                    <div>Points Balance</div>
-                    <div className="ms-auto">0</div>
-                </Stack>
-                </Card.Title>
-            </Card.Body>
-            </Card>
+        <div className="appBody mt-3">
+            <div className='top-action-wrapper'>
+              <Link to={'/'}>
+                  <div className='back-group'>
+                      <img src={imgBack} alt="Back" />
+                      Back to home
+                  </div>
+              </Link>
+              <Link to={'/myrewards'}>
+                <div className='btn-outline-active'>
+                  <img src={imgMyRewardsIcon} alt="My Rewards" /> My Rewards
+                </div>
+              </Link>
+              
+            </div>
 
             <Container className='mt-3 mb-3'>
                 <Row className='list-dropdown-row'>
@@ -94,30 +99,33 @@ const Rewards = () => {
             </Container>
 
             <Container>
-            <Row>
+              <Row>
+                <h1>Rewards</h1>
+                <img src={imgRewardsBanner} alt="Masthead" className='masthead rewards-masthead' />
+              </Row>
+              
+            <Row className='mt-3'>
             {
             voucherData.map((item,index) =>
             (
                 
                 item['items'].map((placeDetail,index2) =>
                     (
-                    <Col key="{index2}" xs={6} lg={3} className='mb-3 px-1'>
                     <Link to={'/detail'} state={{ id: placeDetail["id"], category: item['category'] }}>
                         <Card className="categoryCard">
-                        <Card.Img variant="top" src={placeDetail["image"]} />
-                        <Card.Body>
-                            <Card.Title>${placeDetail['amount']} eVoucher</Card.Title>
-                            <Card.Text>
-                            <div className='place-name-group'>
-                                <div className='bold'>{placeDetail['name']}</div>
-                                <div>{placeDetail['location']}</div>
-                            </div>
-                            <div className="points">{placeDetail['points']} pts</div>
-                            </Card.Text>
-                        </Card.Body>
+                          <Card.Body>
+                              <div className='card-left'>
+                                <img src={placeDetail["image"]} alt={placeDetail['name']}/>
+                              </div>
+                              
+                              <div className='card-right'>
+                                  <div><strong>${placeDetail['amount']} eVoucher</strong></div>
+                                  <div className='text-small'>{placeDetail['name']} - {placeDetail['location']}</div>
+                                  <div className='text-small'><span className='points'>{placeDetail['points']}</span> points</div>
+                              </div>
+                          </Card.Body>
                         </Card>
                     </Link>
-                    </Col>
                     )
                 )
                 

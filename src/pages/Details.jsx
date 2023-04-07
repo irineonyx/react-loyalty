@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import parse from 'html-react-parser'
 import voucherData from '../voucherdata.json';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const Detail = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const location = useLocation();
     const locationState = location.state;
 
@@ -43,6 +49,10 @@ const Detail = () => {
         })//end looping first array
     }
 
+    function redeem(){
+        window.location.href = '/myrewards'
+    }
+
     return (
         <>
         <div className="appBody">
@@ -57,6 +67,23 @@ const Detail = () => {
 
             <div className='bold mt-3'>Terms & Conditions</div>
             {parse(detail['tnc'])}
+
+            <div>
+                <Button variant="primary" size="lg" className="solid-btn" onClick={handleShow}>Redeem</Button>
+            </div>
+
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>Redeem now?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={redeem}>
+            Yes, Redeem Now
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </div>
         </>
     )
