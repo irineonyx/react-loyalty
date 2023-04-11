@@ -66,20 +66,6 @@ const Rewards = () => {
     return (
         <>
         <div className="appBody mt-3">
-            <div className='top-action-wrapper'>
-              <Link to={'/'}>
-                  <div className='back-group'>
-                      <img src={imgBack} alt="Back" />
-                      Back to home
-                  </div>
-              </Link>
-              <Link to={'/myrewards'}>
-                <div className='btn-outline-active'>
-                  <img src={imgMyRewardsIcon} alt="My Rewards" /> My Rewards
-                </div>
-              </Link>
-              
-            </div>
 
             <Container className='mt-3 mb-3'>
                 <Row className='list-dropdown-row'>
@@ -100,8 +86,19 @@ const Rewards = () => {
 
             <Container>
               <Row>
-                <h1>Rewards</h1>
-                <img src={imgRewardsBanner} alt="Masthead" className='masthead rewards-masthead' />
+                <Col>
+                  <h1>Rewards</h1>
+                </Col>
+                <Col>
+                  <Link to={'/myrewards'}>
+                    <div className='btn-outline-active'>
+                      <img src={imgMyRewardsIcon} alt="My Rewards" /> My Rewards
+                    </div>
+                  </Link>
+                </Col>
+              </Row>
+              <Row>
+              <img src={imgRewardsBanner} alt="Masthead" className='masthead rewards-masthead' />
               </Row>
               
             <Row className='mt-3'>
