@@ -5,6 +5,7 @@ import Rewards from "./pages/Rewards";
 import Detail from "./pages/Details";
 import MyRewards from "./pages/MyRewards";
 import RedeemCode from "./pages/redeem/RedeemCode";
+import RedeemQR from "./pages/redeem/RedeemQR";
 import RedeemComplete from "./pages/RedeemComplete";
 import './App.css';
 
@@ -19,6 +20,7 @@ const App = () => {
               <Route path="/detail" element={<Detail />} />
               <Route path="/myrewards" element={<MyRewards />} />
               <Route path="/myrewards/redeem/code" element={<RedeemCode />} />
+              <Route path="/myrewards/redeem/qr" element={<RedeemQR />} />
               <Route path="/myrewards/complete" element={<RedeemComplete />} />
             </Route>
         </Routes>

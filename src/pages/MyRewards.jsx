@@ -40,6 +40,19 @@ const MyRewards = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className='myr-item'>
+                            <div className='myr-item-left'><img src={imgSample} alt='Store'/></div>
+                            <div className='myr-item-right'>
+                                <div className='myr-amount'>$5 voucher</div>
+                                <div className='myr-store'>Jollibean</div>
+                                <div className='myr-action'>
+                                    <div className='myr-date'>Expiry 21 Jun 2023</div>
+                                    <Link to={'/myrewards/redeem/qr'}>
+                                        <div className='myr-use'>Use Now</div>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Tab>
                 <Tab eventKey="past" title="Past Rewards">

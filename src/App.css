@@ -243,10 +243,23 @@ h1{
   cursor: pointer;
   padding: 6px;
   display: flex;
+  justify-content: center;
 }
 .btn-outline-active img{
   margin-right: 6px;
   width: 16px;
   height: auto;
   object-fit: contain;
+}
+.qr-code-wrapper{
+  height: auto;
+  margin: 0px auto;
+  max-width: 60%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.qr-warning-text{
+  background: #EDF2FB;
+  color: #6D6D6D;
+  padding: 16px;
 }
