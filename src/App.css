@@ -1,5 +1,5 @@
 body{
-  background-color: #f9f9f9;
+  background-color: #f9f9f9 !important;
 }
 a{
   color: unset !important;
@@ -262,4 +262,39 @@ h1{
   background: #EDF2FB;
   color: #6D6D6D;
   padding: 16px;
+}
+
+.detail-points-sect{
+  background:#EDF2FB;
+  display: flex;
+  padding: 10px;
+  font-size: 14px;
+}
+.detail-points-left-col, .detail-points-right-col{
+  width: 50%;
+}
+.how-to-sect{
+  background: #ffffff;
+  padding: 30px 12px;
+}
+.redeem-sect{
+  background: #ffffff;
+  margin-top: -50px;
+  padding: 12px;
+  text-align: center;
+}
+.solid-btn{
+  width: 100%;
+  background: #C60D14 !important;
+  border: none !important;
+  margin-bottom: 8px;
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+.modal-content{
+  align-items: center;
+  text-align: center;
+}
+.modal-footer{
+  flex-direction: column;
 }
