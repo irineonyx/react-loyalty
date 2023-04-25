@@ -26,28 +26,35 @@ const Detail = () => {
     )
 
     React.useEffect(() => {
-        loadDetail(locationState.id,locationState.category)
+        loadDetail(locationState.id)
       }, [locationState.id])
 
-    function loadDetail(detailID,category){
-        voucherData.map((item,index) =>
-        {
-            if(category == item['category']){
-                item['items'].map((placeDetail,index2) => {
-                    if(detailID == placeDetail['id']){
-                        setDetail({
-                            id: placeDetail['id'],
-                            img: placeDetail['image'],
-                            amount: placeDetail['amount'],
-                            name: placeDetail['name'],
-                            points: placeDetail['points'],
-                            location: placeDetail['location'],
-                            tnc: placeDetail['tnc']
-                        })
-                    }
-                })//end looping second array
-            }//end if
-        })//end looping first array
+    function loadDetail(detailID){
+      const requestOptions = {
+        headers: { 'X-System-Language': 'en-EN' }
+      };
+      fetch(`${process.env.REACT_APP_HOST}/api-voucher/v1/voucher/details/${detailID}`, requestOptions)
+        .then(async response => {
+            const returnedData = await response.json();
+
+          if (returnedData.success) {
+            const parsedValidUntil = new Date(returnedData.result.voucher_status.valid_until);
+            setDetail({
+              id: detailID,
+              img: returnedData.result.voucher_details.voucher_image,
+              amount: 0,
+              name: returnedData.result.name,
+              desc: returnedData.result.description,
+              points: returnedData.result.voucher_points.point,
+              valid_until: parsedValidUntil.toLocaleDateString(),
+              location: returnedData.result.description,
+              tnc: returnedData.result.voucher_details.tnc
+            })
+          }
+          
+        })  
+
+        
     }
 
     function redeem(){
@@ -71,23 +78,21 @@ const Detail = () => {
           <div className='float'>
             <img src={detail['img']} alt="deal" className="img-detail" />
             <div className='detail-points-sect'>
-              <div className='detail-points-left-col'>
+              <div className='detail-points detail-points-left-col'>
                 Points
-                <div><span>5</span> points</div>
+                <div><span>{detail['points']}</span> points</div>
               </div>
-              <div className='detail-points-right-col'>
+              <div className='detail-points detail-points-right-col'>
                 Validity
-                <div>22 Mar 2023 to 21 Jun 2023</div>
+                <div>{detail['valid_until']}</div>
               </div>
             </div>
             <div className='how-to-sect'>
-              <div>How to redeem</div>
-              <p>Use your points to enjoy a $5 voucher at any Jollibean store</p>
+              <div className='small'>How to redeem</div>
+              <p>{detail['description']}</p>
 
-              <div>Terms and conditions</div>
-              <p>Lorem ipsum dolor sit amet, consectr adipiscing elit aliquip exea
-sed do eiusmod tempor incididunt ut labore et dolore magna
-quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo</p>
+              <div className='small'>Terms and conditions</div>
+              <p>{detail['tnc']}</p>
             </div>
           </div>
           </div>
@@ -102,7 +107,7 @@ quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo</p>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Body>
           <div className='bold'>Get This Reward!</div>
-          <div>Redeem with 5 points?</div>
+          <div>Redeem with {detail['points']} points?</div>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={redeem} className="solid-btn">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import voucherData from '../voucherdata.json';
 import imgBack from '../images/arrow.png';
 import imgRewardsBanner from '../images/mastheads.png';
 import imgMyRewardsIcon from '../images/icon-rewards.png';
@@ -21,6 +20,33 @@ const Rewards = () => {
     const handleShowSort = () => setShowFilterSort(true);
     const [filterCategory, setFilterCategory] = useState('All');
     const [filterSort, setFilterSort] = useState('Latest');
+    const [voucherData, setVoucherData] = useState([]);
+
+    useEffect(() => {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'X-System-Language': 'en-EN' },
+        body: JSON.stringify({
+          "status" : "",
+          "merchant_id": "",
+          "code" : "",
+          "name" : ""
+      })
+      };
+      fetch(`${process.env.REACT_APP_HOST}/api-voucher/v1/voucher/list`, requestOptions)
+        .then(async response => {
+            const returnedData = await response.json();
+
+          if (returnedData.success) {
+              // get error message from body or default to response status
+              // const error = (returnedData && returnedData.message) || response.status;
+              // return Promise.reject(error);
+
+              setVoucherData(returnedData.result)
+          }
+          
+        })        
+    }, [])
 
     function OffCanvasCategory({ ...props }) {
         return (
@@ -105,27 +131,23 @@ const Rewards = () => {
             {
             voucherData.map((item,index) =>
             (
-                
-                item['items'].map((placeDetail,index2) =>
-                    (
-                    <Link to={'/detail'} state={{ id: placeDetail["id"], category: item['category'] }}>
-                        <Card className="categoryCard">
-                          <Card.Body>
-                              <div className='card-left'>
-                                <img src={placeDetail["image"]} alt={placeDetail['name']}/>
-                              </div>
-                              
-                              <div className='card-right'>
-                                  <div><strong>${placeDetail['amount']} eVoucher</strong></div>
-                                  <div className='text-small'>{placeDetail['name']} - {placeDetail['location']}</div>
-                                  <div className='text-small'><span className='points'>{placeDetail['points']}</span> points</div>
-                              </div>
-                          </Card.Body>
-                        </Card>
-                    </Link>
-                    )
-                )
-                
+                <Link to={'/detail'} state={{ id: item["id"] }} key={item['id']}>
+                    <Card className="categoryCard">
+                      <Card.Body>
+                          <div className='card-left'>
+                            <img src={item["voucher_details"]["voucher_image"]} alt={item['name']}/>
+                          </div>
+                          
+                          <div className='card-right'>
+                            {/*}
+                              <div><strong>${item['amount']} eVoucher</strong></div>
+            */}
+                              <div className='text-small'>{item['name']} - {item['description']}</div>
+                              <div className='text-small'><span className='points'>{item['voucher_points']['points']}</span> points</div>
+                          </div>
+                      </Card.Body>
+                    </Card>
+                </Link>
             )
             )}
             </Row>

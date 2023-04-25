@@ -270,8 +270,12 @@ h1{
   padding: 10px;
   font-size: 14px;
 }
+.detail-points + .detail-points {
+  border-left: solid 1px #C1C1C1;
+}
 .detail-points-left-col, .detail-points-right-col{
   width: 50%;
+  padding: 0 10px;
 }
 .how-to-sect{
   background: #ffffff;
@@ -297,4 +301,9 @@ h1{
 }
 .modal-footer{
   flex-direction: column;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+.modal-footer button{
+  width: 100%;
 }
